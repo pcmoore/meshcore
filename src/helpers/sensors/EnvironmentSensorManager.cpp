@@ -350,7 +350,6 @@ bool EnvironmentSensorManager::querySensors(uint8_t requester_permissions, Cayen
         telemetry.addTemperature(TELEM_CHANNEL_SELF, BME680.temperature);
         telemetry.addRelativeHumidity(TELEM_CHANNEL_SELF, BME680.humidity);
         telemetry.addBarometricPressure(TELEM_CHANNEL_SELF, BME680.pressure / 100);
-        telemetry.addAltitude(TELEM_CHANNEL_SELF, 44330.0 * (1.0 - pow((BME680.pressure / 100) / TELEM_BME680_SEALEVELPRESSURE_HPA, 0.1903)));
         telemetry.addAnalogInput(next_available_channel, BME680.gas_resistance);
         next_available_channel++;
       }
@@ -362,7 +361,6 @@ bool EnvironmentSensorManager::querySensors(uint8_t requester_permissions, Cayen
       telemetry.addTemperature(TELEM_CHANNEL_SELF, BME280.readTemperature());
       telemetry.addRelativeHumidity(TELEM_CHANNEL_SELF, BME280.readHumidity());
       telemetry.addBarometricPressure(TELEM_CHANNEL_SELF, BME280.readPressure()/100);
-      telemetry.addAltitude(TELEM_CHANNEL_SELF, BME280.readAltitude(TELEM_BME280_SEALEVELPRESSURE_HPA));
     }
     #endif
 
@@ -370,7 +368,6 @@ bool EnvironmentSensorManager::querySensors(uint8_t requester_permissions, Cayen
     if (BMP280_initialized) {
       telemetry.addTemperature(TELEM_CHANNEL_SELF, BMP280.readTemperature());
       telemetry.addBarometricPressure(TELEM_CHANNEL_SELF, BMP280.readPressure()/100);
-      telemetry.addAltitude(TELEM_CHANNEL_SELF, BMP280.readAltitude(TELEM_BMP280_SEALEVELPRESSURE_HPA));
     }
     #endif
 
@@ -469,7 +466,6 @@ bool EnvironmentSensorManager::querySensors(uint8_t requester_permissions, Cayen
     if (BMP085_initialized) {
         telemetry.addTemperature(TELEM_CHANNEL_SELF, BMP085.readTemperature());
         telemetry.addBarometricPressure(TELEM_CHANNEL_SELF, BMP085.readPressure() / 100);
-        telemetry.addAltitude(TELEM_CHANNEL_SELF, BMP085.readAltitude(TELEM_BMP085_SEALEVELPRESSURE_HPA * 100));
     }
     #endif
 
